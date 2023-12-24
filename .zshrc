@@ -1,30 +1,26 @@
-# Load Antigen
-source ~/antigen.zsh
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-# Load Antigen configurations
-antigen init ~/.antigenrc
+# Determine the operating system
+OS="$(uname)"
+
+# Source and load Antidote plugins
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+antidote load
+autoload -Uz promptinit && promptinit && prompt pure
 
 # Sublime
-alias sublime='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/thomasmathew/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/thomasmathew/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/thomasmathew/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/thomasmathew/google-cloud-sdk/completion.zsh.inc'; fi
-
-# NVM
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Java
-export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
-
-alias aws_whoami="aws sts get-caller-identity | jq"
-alias aws_prod="export AWS_PROFILE=prod && aws_whoami"
-alias aws_staging="export AWS_PROFILE=staging && aws_whoami"
-alias aws_root="export AWS_PROFILE=default && aws_whoami"
+if [ "$OS" = "Darwin" ]; then
+	# macOS path
+	alias sublime='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+fi
 
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
