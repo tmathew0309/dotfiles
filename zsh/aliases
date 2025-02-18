@@ -1,0 +1,13 @@
+# Git aliases
+alias gst='git status'
+alias gl='git log --oneline --graph --decorate'
+alias ga='git add'
+
+# Common navigation shortcuts
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# Miscellaneous
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'

@@ -1,2 +1,0 @@
-ohmyzsh/ohmyzsh
-romkatv/powerlevel10k

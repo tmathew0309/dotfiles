@@ -1,0 +1,39 @@
+# Load zinit
+source ~/.zinit/bin/zinit.zsh
+
+# Speed up loading with turbo mode
+zinit ice wait lucid atload"source ~/.zshrc"
+zinit light romkatv/powerlevel10k
+
+# Autosuggestions
+zinit ice wait lucid
+zinit light zsh-users/zsh-autosuggestions
+
+# Syntax highlighting (fast version)
+zinit ice wait lucid
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+# Better completions
+zinit ice wait lucid
+zinit light zsh-users/zsh-completions
+
+# History substring search
+zinit ice wait lucid
+zinit light zsh-users/zsh-history-substring-search
+
+# You should use (suggests commonly used commands)
+zinit ice wait lucid
+zinit light MichaelAquilina/zsh-you-should-use
+
+# Load completions for zinit itself
+autoload -Uz compinit && compinit
+
+# Sublime
+if [ "$OS" = "Darwin" ]; then
+	# macOS path
+	alias sublime='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+fi
+
+# History
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
